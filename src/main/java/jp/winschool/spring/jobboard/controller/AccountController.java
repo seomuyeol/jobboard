@@ -55,10 +55,10 @@ public class AccountController {
 				accountService.createAdministratorAccount(username, password, active);
 				break;
 			case "company":
-				accountService.createAdministratorAccount(username, password, active);
+				accountService.createCompanyAccount(username, password, active);
 				break;
 			case "person":
-				accountService.createAdministratorAccount(username, password, active);
+				accountService.createPersonAccount(username, password, active);
 				break;
 			}
 			return "redirect:/account";
