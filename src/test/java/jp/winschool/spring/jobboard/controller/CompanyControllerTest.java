@@ -203,10 +203,70 @@ class CompanyControllerTest {
             .andExpect(model().attribute("offer", offerMap.get("1")));
     }
     
-    @Test //13
+    @Test //11
     @WithMockUser(roles="COMPANY")
     public void testShowOfferHasNotPermission() throws Exception {
         mockMvc.perform(get("/company/offer/2"))
             .andExpect(status().isForbidden());
+    }
+    
+    @Test
+    @WithMockUser(roles="COMPANY")
+    public void testEditOfferHasPermission() throws Exception {
+        mockMvc.perform(get("/company/offer/1/edit"))
+        .andExpect(status().isOk())
+        .andExpect(view().name("company/offer/form"))
+        .andExpect(model().attribute("offer", offerMap.get("1")));
+    }
+    
+    @Test
+    @WithMockUser(roles="COMPANY")
+    public void testEditOfferHasNotPermission() throws Exception {
+        mockMvc.perform(get("/company/offer/2"))
+        .andExpect(status().isForbidden());
+    }
+    
+    @Test //14
+    @WithMockUser(roles="COMPANY")
+    public void testEditOfferPostSuccess() throws Exception {
+        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+        params.add("title", "Springエンジニア募集");
+        params.add("prefecture", "東京都");
+        params.add("address", "新宿区");
+        mockMvc.perform(post("/company/offer/1/edit").with(csrf()).params(params))
+            .andExpect(status().isFound());
+    }
+    
+    @Test //15
+    @WithMockUser(roles="COMPANY")
+    public void testEditOfferPostFail() throws Exception {
+        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+        mockMvc.perform(post("/company/offer/1/edit").with(csrf()).params(params))
+            .andExpect(view().name("company/offer/form"))
+            .andExpect(model().hasErrors());
+    }
+    
+    @Test
+    @WithMockUser(roles="COMPANY")
+    public void testEntryHasPermission() throws Exception {
+        mockMvc.perform(get("/company/offer/1/entry/1"))
+        .andExpect(status().isOk())
+        .andExpect(view().name("company/offer/entry"))
+        .andExpect(model().attribute("entry", entryMap.get("1")));
+    }
+    
+    @Test
+    @WithMockUser(roles="COMPANY")
+    public void testEntryHasNotPermission() throws Exception {
+        mockMvc.perform(get("/company/offer/2/entry/2"))
+        .andExpect(status().isForbidden());
+    }
+    
+    @Test //18
+    @WithMockUser(roles="COMPANY")
+    public void testEntryOfferPostSuccess() throws Exception {
+        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+        mockMvc.perform(post("/company/offer/1/entry/1").with(csrf()).params(params))
+            .andExpect(status().isFound());
     }
 }

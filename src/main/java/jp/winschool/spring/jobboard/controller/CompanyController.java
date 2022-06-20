@@ -77,6 +77,24 @@ public class CompanyController {
 		return "company/offer/show";
 	}
 	
+	@GetMapping("/offer/{offerId}/edit")
+	public String editOffer(@PathVariable("offerId") Offer offer,Model model) {
+		checkOfferOwner(offer, model);
+		
+		model.addAttribute("offer", offer);
+		return "company/offer/form";
+	}
+	
+	@PostMapping("/offer/{offerId}/edit")
+	public String editOffer(@Valid Offer offer, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return "company/offer/form";
+		}
+		
+		companyService.updateOffer(offer);
+		return "redirect:/company/offer/" + offer.getId();
+	}
+	
 	@GetMapping("/offer/{offerId}/entry/{entryId}")
 	public String showEntry(@PathVariable("entryId") Entry entry, Model model) {
 		checkOfferOwner(entry.getOffer(), model);
@@ -85,12 +103,17 @@ public class CompanyController {
 		return "company/offer/entry";
 	}
 	
+
+	
 	@PostMapping("/offer/{offerId}/entry/{entryId}")
 	public String processEntry(@PathVariable("entryId") Entry entry) {
 		companyService.processEntry(entry);
 		String path = "/company/offer/" + entry.getOffer().getId() + "/entry/" + entry.getId();
 		return "redirect:" + path;
 	}
+	
+	
+	
 	
 	@ResponseStatus(HttpStatus.FORBIDDEN)
 	private class ForbiddenOfferAccessException extends RuntimeException {
