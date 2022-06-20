@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
@@ -44,6 +45,12 @@ class AccountServiceTest {
     @MockBean
     private SpringUserService springUserService;
 	
+    @Test
+    public void testGetAccountList() {
+        List<Account> accounts = accountService.getAccountList();
+        verify(accountRepository).findAll();
+    }
+    
 	@Test
 	void testFind() {
 		Account account = new Account();
