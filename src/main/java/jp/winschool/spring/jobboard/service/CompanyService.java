@@ -4,7 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jp.winschool.spring.jobboard.model.Company;
+import jp.winschool.spring.jobboard.model.Entry;
+import jp.winschool.spring.jobboard.model.Offer;
 import jp.winschool.spring.jobboard.repository.CompanyRepository;
+import jp.winschool.spring.jobboard.repository.EntryRepository;
+import jp.winschool.spring.jobboard.repository.OfferRepository;
 
 @Service
 public class CompanyService {
@@ -12,6 +16,11 @@ public class CompanyService {
 	@Autowired
 	private CompanyRepository companyRepository;
 	
+    @Autowired
+    private OfferRepository offerRepository;
+    
+    @Autowired
+    private EntryRepository entryRepository;
 	public Company createDefaultValueCompany() {
 		Company company = new Company();
 		company.setName("名前を設定してください");
@@ -21,4 +30,21 @@ public class CompanyService {
 		companyRepository.save(company);
 		return company;
 	}
+    
+    public void updateCompany(Company company) {
+        companyRepository.save(company);
+    }
+    
+    public Offer createOffer(Offer offer) {
+        return offerRepository.save(offer);
+    }
+    
+    public void updateOffer(Offer offer) {
+        offerRepository.save(offer);
+    }
+    
+    public void processEntry(Entry entry) {
+        entry.setActive(false);
+        entryRepository.save(entry);
+    }
 }
