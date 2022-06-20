@@ -79,6 +79,32 @@ public class AccountControllerTest {
         assertThat(form.getActive()).isEqualTo(account.getActive());
     }
     
+    @Test
+    @WithMockUser(roles="ADMINISTRATOR")
+    public void testEditPostSuccess() throws Exception {
+        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+        params.add("type", "administrator");
+        params.add("username", "win");
+        params.add("password", "12345678");
+        params.add("active", "true");
+        mockMvc.perform(post("/account/win/edit").with(csrf()).params(params))
+            .andExpect(status().isFound());
+
+    }
+    
+    @Test
+    @WithMockUser(roles="ADMINISTRATOR")
+    public void testEditPostFailValidation() throws Exception {
+        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+        params.add("type", "administrator");
+        params.add("username", "win");
+        params.add("password", "1234");
+        params.add("active", "true");
+        mockMvc.perform(post("/account/win/edit").with(csrf()).params(params))
+            .andExpect(view().name("account/edit"))
+            .andExpect(model().hasErrors());
+    }
+    
     
     @Test
     public void testIndexNotLogin() throws Exception {

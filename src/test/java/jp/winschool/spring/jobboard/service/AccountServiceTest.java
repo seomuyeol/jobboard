@@ -15,6 +15,7 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import jp.winschool.spring.jobboard.model.Account;
 import jp.winschool.spring.jobboard.model.Company;
+import jp.winschool.spring.jobboard.model.Person;
 import jp.winschool.spring.jobboard.repository.AccountRepository;
 
 @SpringJUnitConfig
@@ -70,5 +71,28 @@ class AccountServiceTest {
 		verify(accountRepository).save(account);
 		verify(companyService).createDefaultValueCompany();
         verify(springUserService).createSpringUser("win", "win", "COMPANY", true);
+	}
+	
+	@Test
+	void testCreatePersonAccount() {
+		Person person = new Person();
+		when(personService.createDefaultValuePerson()).thenReturn(person);
+		
+		Account account = accountService.createPersonAccount("win", "win", true);
+		assertThat(account.getPerson()).isNotNull();
+		verify(accountRepository).save(account);
+		verify(personService).createDefaultValuePerson();
+        verify(springUserService).createSpringUser("win", "win", "PERSON", true);
+	}
+	
+	@Test
+	void testUpdateAccount() {
+		Account account = new Account();
+		when(accountRepository.findById("win")).thenReturn(Optional.of(account));
+		
+//		Account defaultAccount = accountService.createAdministratorAccount("win", "win", true);
+		accountService.updateAccount("win", "win", true);
+		verify(accountRepository).save(account);
+        verify(springUserService).updateSpringUser("win", "win", true);
 	}
 }
