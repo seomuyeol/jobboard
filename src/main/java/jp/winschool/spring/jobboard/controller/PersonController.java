@@ -73,38 +73,40 @@ public class PersonController {
 	
 	@GetMapping("/entry/{entryId}")
 	public String showEntry(@PathVariable("entryId") Entry entry, Model model) {
-		checkPersonOwner(entry.getPerson(), model);
+		checkEntryOwner(entry, model);
 		
+		model.addAttribute("entry", entry);
 		return "person/offer/entry";
 	}
 	
 	@ResponseStatus(HttpStatus.FORBIDDEN)
-	private class ForbiddenPersonAccessException extends RuntimeException {
+	private class ForbiddenEntryAccessException extends RuntimeException {
 		private static final long serialVersionUID = 1L;
 		
-		public ForbiddenPersonAccessException(String message) {
+		public ForbiddenEntryAccessException(String message) {
 			super(message);
 		}
 	}
+
 	
 	@ResponseStatus(HttpStatus.NOT_FOUND)
-	private class PersonNotFoundException extends RuntimeException {
+	private class EntryNotFoundException extends RuntimeException {
 		private static final long serialVersionUID = 1L;
 		
-		public PersonNotFoundException(String message) {
+		public EntryNotFoundException(String message) {
 			super(message);
 		}
 	}
 	
-	private void checkPersonOwner(Person person, Model model) {
-		if (person == null) {
-			throw new PersonNotFoundException("Not Found");
+	private void checkEntryOwner(Entry entry, Model model) {
+		if (entry == null) {
+			throw new EntryNotFoundException("Not Found");
 		}
 		
 		Map<String, Object> map = model.asMap();
-		Entry entry = (Entry)map.get("entry");
-		if (!entry.equals(person.getEntries())) {
-			throw new ForbiddenPersonAccessException("Forbidden");
+		Person person = (Person)map.get("person");
+		if (!person.equals(entry.getPerson())) {
+			throw new ForbiddenEntryAccessException("Forbidden");
 		}
 	}
 
