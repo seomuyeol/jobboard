@@ -6,13 +6,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/s_css.css">
 <title>共通レイアウト</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
 	<a href="/" class="navbar-brand">Winスクール ジョブボード</a>
+	
 
 	<ul class="navbar-nav flex-fill">
+	<li>フリーランスの求職サイト</li>
 		<li class="nav-item" sec:authorize="hasRole('ADMINISTRATOR')">
 			<a href="/account" class="nav-link">
 				アカウント管理
