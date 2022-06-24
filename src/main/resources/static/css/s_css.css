@@ -24,3 +24,18 @@
   padding-bottom: 114px;
 }
 */
+
+.jb-wrap {
+	width: 40%;
+	margin: 10px auto;
+	border: 1px solid #000000;
+	position: relative;
+}
+
+.jb-wrap img {
+	width: 100%;
+	vertical-align: middle;
+}
+.btn-cancel-job {
+	float: right
+}

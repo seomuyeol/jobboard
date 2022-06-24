@@ -15,5 +15,15 @@ public class LayoutController {
 	public String layout2() {
 		return "layout2";
 	}
+	
+	@GetMapping("/layout/common")
+	public String common() {
+		return "layout/common";
+	}
+	
+	@GetMapping("/layout/footer")
+	public String footer() {
+		return "layout/footer";
+	}
 
 }
