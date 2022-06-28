@@ -1,18 +1,18 @@
 package jp.winschool.spring.jobboard.controller;
 
-import java.time.LocalDate;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import jp.winschool.spring.jobboard.model.Customer;
+import jp.winschool.spring.jobboard.model.AccountForm;
 import jp.winschool.spring.jobboard.service.CustomerService;
 
 @Controller
@@ -30,27 +30,27 @@ public class CustomerController {
 	}
 	
 	@GetMapping("/customer/create")
-	public String create(Customer customer) {
+	public String create(AccountForm accountForm) {
 		return "customer/create";
 	}
 	
 	@PostMapping("/customer/create")
-	public String create(@Valid Customer customer, BindingResult bindingResult) {
+	public String create(@Valid AccountForm accountForm, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			return "customer/create";
 		}
-		
-			String name = customer.getName();
-			String password = customer.getPassword();
-			String mail = customer.getMail();
-			String tel = customer.getTel();
-			LocalDate birthday = customer.getBirthday();
+		try {
+			String username = accountForm.getUsername();
+			String password = accountForm.getPassword();
+			boolean active = accountForm.getActive();
 			
+			customerService.createCustomer(username, password, active);
+			return "redirect:/";
 			
-			if (bindingResult.hasErrors()) {
-				return "cutomer/create";
-			}
-			return "index";
+		} catch (DuplicateKeyException e) {
+			bindingResult.addError(new FieldError("accountForm", "username", "既に存在するユーザIDです"));
+			return "customer/create";
+		}
 	}
 //	
 //	@GetMapping("/{username}/edit")
