@@ -59,10 +59,24 @@ class OfferRepositoryTest {
 	}
 	
 	@Test
-	void testfindByActiveTrueAndTitleContainsAndPrefectureContains() {
+	void testfindByActiveTitleContainsSpring() {
 		List<Offer> findByActiveTrueAndTitleContainsAndPrefectureContains = 
 				offerRepository.findByActiveTrueAndTitleContainsAndPrefectureContains("Spring", "");
 		assertThat(findByActiveTrueAndTitleContainsAndPrefectureContains.size()).isEqualTo(2);
+	}
+	
+	@Test
+	void testfindByActivePrefectureContainsTokyo() {
+		List<Offer> findByActiveTrueAndTitleContainsAndPrefectureContains = 
+				offerRepository.findByActiveTrueAndTitleContainsAndPrefectureContains("", "東京都");
+		assertThat(findByActiveTrueAndTitleContainsAndPrefectureContains.size()).isEqualTo(1);
+	}
+	
+	@Test
+	void testfindByActiveTitleContainsSpringAndPrefectureContainsOsaka() {
+		List<Offer> findByActiveTrueAndTitleContainsAndPrefectureContains = 
+				offerRepository.findByActiveTrueAndTitleContainsAndPrefectureContains("Spring", "大阪府");
+		assertThat(findByActiveTrueAndTitleContainsAndPrefectureContains.size()).isEqualTo(1);
 	}
 
 }

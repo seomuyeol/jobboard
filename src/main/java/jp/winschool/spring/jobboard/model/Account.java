@@ -24,4 +24,7 @@ public class Account {
 	
 	@OneToOne
 	private Person	person;
+	
+	@OneToOne
+	private Customer customer;
 }
