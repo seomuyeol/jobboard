@@ -10,7 +10,12 @@
 <body>
 <div layout:fragment="contents">
 
-<h2>求人情報</h2>
+<h2>求人情報</h2>		
+<ul class="nav">
+	<li class="nav-item">
+    	<a class="nav-link" href="/customer/offerList">Listへ</a>
+  	</li>
+</ul>
 <!-- Background image -->
 <div
   class="bg-image d-flex justify-content-center align-items-center"
@@ -19,7 +24,7 @@
     height: 40vh;
   "
 >
-  <h1 class="text-white">
+  <h1 class="text-white" sec:authorize="!isAuthenticated()">
   <a href="/customer/create"> 会員登録</a>
   </h1>
 </div>

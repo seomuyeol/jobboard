@@ -52,7 +52,7 @@ public class CustomerService {
         account.setUsername(username);
         account.setType("customer");
 //        account.setCustomer(customer);
-        account.setActive(active);
+        account.setActive(active);	
         accountRepository.save(account);
         return account;
     }
