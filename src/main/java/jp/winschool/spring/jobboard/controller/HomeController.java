@@ -25,16 +25,26 @@ public class HomeController {
 		return "index";
 	}
 	
+	@GetMapping("/index1")
+	public String home1(Model model) {
+		List<Offer> offers = homeService.getOfferList();
+		model.addAttribute("offers", offers);
+		
+		return "index1";
+	}
+	
 	@GetMapping("/search")
 	public String search(@RequestParam String word, @RequestParam String prefecture, Model model) {
 		List<Offer> offers = homeService.findOfferList(word, prefecture);
 		model.addAttribute("offers", offers);
 		
-		return "index";
+		return "offer/list";
 	}
+	
 	@GetMapping("/offer/{offerId}")
 	public String showOffer(@PathVariable("offerId") Offer offer, Model model){
 		model.addAttribute("offer", offer);
+		
 		return "offer";
 	}
 	
@@ -42,4 +52,10 @@ public class HomeController {
 	public String login() {
 		return "login";
 	}
+	
+	@GetMapping("/intro")
+	public String intro() {
+		return "intro";
+	}
+	
 }

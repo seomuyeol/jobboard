@@ -1,3 +1,4 @@
+
 package jp.winschool.spring.jobboard.controller;
 
 import java.util.Arrays;
