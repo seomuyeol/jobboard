@@ -4,6 +4,8 @@
 	layout:decorate="~{layout/common}">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Winスクール ジョブボード</title>
 </head>
 <body>
@@ -11,15 +13,6 @@
 
 		<h2>求人情報</h2>
 
-		<ul class="nav nav-tabs">
-			<li class="nav-item"><a class="nav-link active"
-				aria-current="page" href="#">Active</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
-			<li class="nav-item"><a class="nav-link disabled" href="#"
-				tabindex="-1" aria-disabled="true">Disabled</a></li>
-		</ul>
-		
 		<div class="row mb-3">
 			<div class="col">
 				<form action="/search" class="form-inline" method="get">
@@ -42,21 +35,81 @@
 			<div class="col">
 				<table class="table">
 					<thead>
-					<th><h3>dodaで転職活動を始めよう！</h3><th>
-						<tr>
-							<th>会社</th>
-							<th>求人タイトル</th>
-							<th>操作</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="offer : ${offers}" th:object="${offer}">
-							<td th:text="*{company.name}"></td>
-							<td th:text="*{title}"></td>
-							<td><a th:href="@{|/offer/*{id}|}">表示</a></td>
-						</tr>
+						<h3>セオで転職活動を始めよう！</h3>
 					</tbody>
 				</table>
+				<!-- START THE FEATURETTES -->
+
+				<hr class="featurette-divider">
+
+				<div class="row featurette">
+					<div class="col-md-7">
+						<h2 class="featurette-heading">
+							まずは自分で探してみたい <span class="text-muted">という方は</span>
+						</h2>
+						<p class="lead">あなたのこだわり条件で求人を探してみよう。
+							毎週更新される特集や、月曜・木曜に更新される新着求人もかかさずチェック！</p>
+					</div>
+					<div class="col-md-5">
+						<svg
+							class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+							width="500" height="500" xmlns="http://www.w3.org/2000/svg"
+							role="img" aria-label="Placeholder: 500x500"
+							preserveAspectRatio="xMidYMid slice" focusable="false">
+						<title>Placeholder</title><rect width="100%" height="100%"
+								fill="#eee" />
+						<text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+					</div>
+				</div>
+
+				<hr class="featurette-divider">
+
+				<div class="row featurette">
+					<div class="col-md-7 order-md-2">
+						<h2 class="featurette-heading">
+							一人での転職活動は不安… <span class="text-muted">という方は</span>
+						</h2>
+						<p class="lead">エージェントサービスを利用して、あなたにぴったりの求人を紹介してもらおう。
+							dodaの専門スタッフが非公開求人を含む約10万件の求人から、あなたに合った求人を紹介してくれます。</p>
+					</div>
+					<div class="col-md-5 order-md-1">
+						<svg
+							class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+							width="500" height="500" xmlns="http://www.w3.org/2000/svg"
+							role="img" aria-label="Placeholder: 500x500"
+							preserveAspectRatio="xMidYMid slice" focusable="false">
+						<title>Placeholder</title><rect width="100%" height="100%"
+								fill="#eee" />
+						<text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+					</div>
+				</div>
+
+				<hr class="featurette-divider">
+
+				<div class="row featurette">
+					<div class="col-md-7">
+						<h2 class="featurette-heading">
+							あまり転職活動の時間が とれない…<span class="text-muted">という方は</span>
+						</h2>
+						<p class="lead">スカウトサービスを活用して効率的に転職活動をしよう。
+							あなたに興味を持った企業から直接オファーが届くので、スキマ時間にチェック！ 書類選考なしの面接確約オファーが届くことも。</p>
+					</div>
+					<div class="col-md-5">
+						<svg
+							class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
+							width="500" height="500" xmlns="http://www.w3.org/2000/svg"
+							role="img" aria-label="Placeholder: 500x500"
+							preserveAspectRatio="xMidYMid slice" focusable="false">
+						<title>Placeholder</title><rect width="100%" height="100%"
+								fill="#eee" />
+						<text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+					</div>
+				</div>
+
+				<hr class="featurette-divider">
+
+				<!-- /END THE FEATURETTES -->
+
 			</div>
 		</div>
 
