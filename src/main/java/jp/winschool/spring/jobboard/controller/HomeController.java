@@ -53,9 +53,15 @@ public class HomeController {
 		return "login";
 	}
 	
-	@GetMapping("/intro")
+	@GetMapping("/home/intro")
 	public String intro() {
-		return "intro";
+		return "home/intro";
 	}
+	
+	@GetMapping("/home/question")
+	public String question() {
+		return "home/question";
+	}
+	
 	
 }

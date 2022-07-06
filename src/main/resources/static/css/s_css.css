@@ -25,16 +25,17 @@
 }
 */
 
-.jb-wrap {
-	width: 40%;
-	margin: 10px auto;
-	border: 1px solid #000000;
-	position: relative;
+.qa_area {
+    padding: 48px 48px 40px;
+    border-bottom: 1px solid #e6e6e6;
 }
 
-.jb-wrap img {
-	width: 100%;
-	vertical-align: middle;
+.main_wall {
+    float: none;
+    overflow: visible;
+    width: 1200px;
+    margin: 30px 30px 30px 70px;
+    background-color: ghostwhite;
 }
 .btn-cancel-job {
 	float: right
