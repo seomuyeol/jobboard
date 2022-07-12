@@ -32,9 +32,8 @@
 					</tbody>
 				</table>
 			</div>
-			<div class = "right"sec:authorize="hasRole('COMPANY')">
-				<a href="/company/offer/create" class="btn btn-primary"> 求人新規作成
-				</a>
+			<div class="right" sec:authorize="hasRole('COMPANY')">
+				<a href="/company/offer/create" class="btn btn-primary"> 新規作成 </a>
 			</div>
 		</div>
 		<!-- START THE FEATURETTES -->
@@ -50,8 +49,8 @@
 									<span class="input-group-text border-0 px-1" id="basic-addon2"><i
 										class="fas fa-search fa-lg" style="color: #939597;"></i></span> <input
 										type="text" class="form-control form-control-lg rounded"
-										placeholder="Search" aria-label="Search"
-										aria-describedby="basic-addon2" />
+										th:value="${param.word}" placeholder="Search"
+										aria-label="Search" aria-describedby="basic-addon2" />
 								</div>
 								<p class="mb-0 d-flex flex-row align-self-center"
 									style="color: #939597;">
@@ -65,98 +64,54 @@
 									search</h6>
 								<div class="row">
 									<div class="col-md-4 mb-3">
-										<div class="dropdown">
-											<a
-												class="btn btn-outline-dark btn-rounded btn-lg btn-block dropdown-toggle"
-												href="#" role="button" id="dropdownMenuLink"
-												data-mdb-toggle="dropdown" aria-expanded="false">
-												Accessories </a>
-											<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-												<li><a class="dropdown-item" href="#">Action</a></li>
-												<li><a class="dropdown-item" href="#">Another
-														action</a></li>
-												<li><a class="dropdown-item" href="#">Something
-														else here</a></li>
-											</ul>
-										</div>
+										<input type="text"
+											class="form-control btn-outline-dark btn-rounded"
+											id="datepicker1" placeholder="Arrival date" />
 									</div>
 									<div class="col-md-4 mb-3">
-										<div class="dropdown">
-											<a
-												class="btn btn-outline-dark btn-rounded btn-lg btn-block dropdown-toggle"
-												href="#" role="button" id="dropdownMenuLink1"
-												data-mdb-toggle="dropdown" aria-expanded="false"> Color
-											</a>
-											<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
-												<li><a class="dropdown-item" href="#">Action</a></li>
-												<li><a class="dropdown-item" href="#">Another
-														action</a></li>
-												<li><a class="dropdown-item" href="#">Something
-														else here</a></li>
-											</ul>
-										</div>
+										<input type="text"
+											class="form-control btn-outline-dark btn-rounded"
+											id="datepicker2" placeholder="Departure date" />
 									</div>
 									<div class="col-md-4 mb-3">
-										<div class="dropdown">
-											<a
-												class="btn btn-outline-dark btn-rounded btn-lg btn-block dropdown-toggle"
-												href="#" role="button" id="dropdownMenuLink2"
-												data-mdb-toggle="dropdown" aria-expanded="false"> Size </a>
-											<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink2">
-												<li><a class="dropdown-item" href="#">Action</a></li>
-												<li><a class="dropdown-item" href="#">Another
-														action</a></li>
-												<li><a class="dropdown-item" href="#">Something
-														else here</a></li>
-											</ul>
-										</div>
+										<select name="prefecture"
+											class="form-select btn-outline-dark btn-rounded"
+											aria-label="Default select example">
+											<option selected>地域</option>
+											<option th:each="prefecture : ${prefectures}"
+												th:value="${prefecture}" th:text="${prefecture}"
+												th:selected="${#strings.equals(param.prefecture, prefecture)}">
+											</option>
+										</select>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-4 mb-3">
-										<div class="dropdown">
-											<a
-												class="btn btn-outline-dark btn-rounded btn-lg btn-block dropdown-toggle"
-												href="#" role="button" id="dropdownMenuLink3"
-												data-mdb-toggle="dropdown" aria-expanded="false"> Sale </a>
-											<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink3">
-												<li><a class="dropdown-item" href="#">Action</a></li>
-												<li><a class="dropdown-item" href="#">Another
-														action</a></li>
-												<li><a class="dropdown-item" href="#">Something
-														else here</a></li>
-											</ul>
-										</div>
+										<select class="form-select btn-outline-dark btn-rounded"
+											aria-label="Default select example">
+											<option selected>Open this select menu</option>
+											<option value="1">1 adult</option>
+											<option value="2">2 adult</option>
+											<option value="3">3 adult 以上</option>
+										</select>
 									</div>
 									<div class="col-md-4 mb-3">
-										<div class="dropdown">
-											<a
-												class="btn btn-outline-dark btn-rounded btn-lg btn-block dropdown-toggle"
-												href="#" role="button" id="dropdownMenuLink4"
-												data-mdb-toggle="dropdown" aria-expanded="false"> Time </a>
-											<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink4">
-												<li><a class="dropdown-item" href="#">Action</a></li>
-												<li><a class="dropdown-item" href="#">Another
-														action</a></li>
-												<li><a class="dropdown-item" href="#">Something
-														else here</a></li>
-											</ul>
-										</div>
+										<select class="form-select btn-outline-dark btn-rounded"
+											aria-label="Default select example">
+											<option selected>Open this select menu</option>
+											<option value="1">One</option>
+											<option value="2">Two</option>
+											<option value="3">Three</option>
+										</select>
 									</div>
 									<div class="col-md-4 mb-3">
-										<div class="dropdown">
-											<a
-												class="btn btn-outline-dark btn-rounded btn-lg btn-block dropdown-toggle"
-												href="#" role="button" id="dropdownMenuLink5"
-												data-mdb-toggle="dropdown" aria-expanded="false"> Type </a>
-											<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink5">
-												<li><a class="dropdown-item" href="#">Action</a></li>
-												<li><a class="dropdown-item" href="#">Another
-														action</a></li>
-												<li><a class="dropdown-item" href="#">Something
-														else here</a></li>
-											</ul>
-										</div>
+										<select class="form-select btn-outline-dark btn-rounded"
+											aria-label="Default select example">
+											<option selected>Open this select menu</option>
+											<option value="1">One</option>
+											<option value="2">Two</option>
+											<option value="3">Three</option>
+										</select>
 									</div>
 								</div>
 								<div
@@ -172,25 +127,35 @@
 						</div>
 					</div>
 				</div>
+				<div class="row">
+					<div class="col">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>キャンプ場タイトル</th>
+									<th>キャンプ場詳細/th>
+									<th>キャンプ先</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="offer : ${offers}" th:object="${offer}">
+									<td th:text="*{title}"></td>
+									<td th:text="*{contents}"></td>
+									<td th:text="*{address}"></td>
+									<td><a th:href="@{|/offer/*{id}|}">表示</a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
 				<hr class="featurette-divider">
-				<div class="col-7" th:each="offer : ${offers}" th:object="${offer}">
-					<h2 class="featurette-heading" th:text="*{company.name}">
-						まずは自分で探してみたい <span class="text-muted">という方は</span>
-					</h2>
-					<p class="lead" th:text="*{title}">あなたのこだわり条件で求人を探してみよう。
-						毎週更新される特集や、月曜・木曜に更新される新着求人もかかさずチェック！</p>
-				</div>
-				<div class="col-md-5" th:text="*{company.name}">
-					<img src="" />
-				</div>
+
+
+
+				<!-- /END THE FEATURETTES -->
+
 			</div>
-
-			<hr class="featurette-divider">
-
-
-
-			<!-- /END THE FEATURETTES -->
-
 		</div>
 	</div>
 </body>

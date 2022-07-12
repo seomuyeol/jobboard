@@ -1,3 +1,5 @@
+
+
 package jp.winschool.spring.jobboard;
 
 
