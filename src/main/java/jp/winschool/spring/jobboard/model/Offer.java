@@ -21,12 +21,12 @@ public class Offer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     
-    @NotBlank(message = "求人タイトルを入力してください")
-    @Size(max = 80, message = "求人タイトルは80文字以内で入力してください")
+    @NotBlank(message = "キャンプタイトルを入力してください")
+    @Size(max = 80, message = "キャンプタイトルは80文字以内で入力してください")
     @Column(length = 80)
     private String title;
     
-    @Size(max = 1000, message = "求人詳細は1000文字以内で入力してください")
+    @Size(max = 1000, message = "キャンプ詳細は1000文字以内で入力してください")
     @Column(length = 1000)
     private String contents;
     
@@ -34,16 +34,16 @@ public class Offer {
     @Column(length = 4)
     private String prefecture;
     
-    @NotBlank(message = "勤務地を入力してください")
-    @Size(max = 80, message = "勤務地は80文字以内で入力してください")
+    @NotBlank(message = "キャンプ先を入力してください")
+    @Size(max = 80, message = "キャンプ先は80文字以内で入力してください")
     @Column(length = 80)
     private String address;
     
-    @Size(max = 80, message = "給与情報は80文字以内で入力してください")
+    @Size(max = 80, message = "値段は80文字以内で入力してください")
     @Column(length = 80)
     private String salary;
     
-    @Size(max = 80, message = "就業時間は80文字以内で入力してください")
+    @Size(max = 80, message = "入室時間は80文字以内で入力してください")
     @Column(length = 80)
     private String workingHours;
     
@@ -51,7 +51,7 @@ public class Offer {
     @Column(length = 80)
     private String holiday;
     
-    @Size(max = 80, message = "社会保険情報は80文字以内で入力してください")
+    @Size(max = 80, message = "注意事項情報は80文字以内で入力してください")
     @Column(length = 80)
     private String insurance;
     

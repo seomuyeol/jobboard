@@ -11,26 +11,6 @@
 <body>
 	<div layout:fragment="contents">
 
-		<h2>求人情報</h2>
-
-		<div class="row mb-3">
-			<div class="col">
-				<form action="/search" class="form-inline" method="get">
-					<label class="mr-3"> 検索ワード <input type="text" name="word"
-						th:value="${param.word}" class="form-control">
-					</label> <label class="mr-3"> 都道府県 <select name="prefecture"
-						class="form-control">
-							<option></option>
-							<option th:each="prefecture : ${prefectures}"
-								th:value="${prefecture}" th:text="${prefecture}"
-								th:selected="${#strings.equals(param.prefecture, prefecture)}">
-							</option>
-					</select>
-					</label> <input type="submit" value="絞込" class="btn btn-primary mr-1">
-				</form>
-			</div>
-		</div>
-
 		<div class="row">
 			<div class="col">
 				<table class="table">

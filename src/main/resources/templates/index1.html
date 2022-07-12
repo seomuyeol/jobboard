@@ -1,82 +1,138 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org/"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout/common}">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorate="~{layout/common}">
 <head>
 <meta charset="UTF-8">
 <title>セオ、フリーラン</title>
+<link rel="icon" href="data:;base64,iVBORw0KGgo=">
+<link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="/css/s_css.css" type="text/css">
+<link rel="stylesheet" href="/css/carousel.css" type="text/css">
+<link rel="stylesheet" href="/css/jquery-ui.css" type="text/css">
+<!-- Font Awesome -->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+	rel="stylesheet" />
+<!-- Google Fonts -->
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+	rel="stylesheet" />
+<!-- MDB -->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.css"
+	rel="stylesheet" />
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>  <script>
+  $( function() {
+    $( "#exampleDatepicker1" ).datepicker();
+  } );
+  </script>
+
+	<script>
+	$("#basic").document
+	
+const basicAutocomplete = document.querySelector('#basic');
+const data = ['Museum', 'Party', 'Restaurant', 'Concert', 'Architecture'];
+const dataFilter = (value) => {
+  return data.filter((item) => {
+    return item.toLowerCase().startsWith(value.toLowerCase());
+  });
+};
+
+new mdb.Autocomplete(basicAutocomplete, {
+  filter: dataFilter
+});
+
+const locationAutocomplete = document.querySelector('#location');
+const dataL = ['1 adult', '2 adults', '3 adults', '2 adults and 1 child', '2 adults and 2 children'];
+const dataFilterL = (value) => {
+  return dataL.filter((item) => {
+    return item.toLowerCase().startsWith(value.toLowerCase());
+  });
+};
+
+new mdb.Autocomplete(locationAutocomplete, {
+  filter: dataFilterL
+});</script>
 </head>
+
 <body>
-<div layout:fragment="contents">
+	<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.js"></script>
+	<section class="intro">
 
-<h2>求人情報</h2>		
-<ul class="nav">
-	<li class="nav-item">
-    	<a class="nav-link" href="/customer/offerList">Listへ</a>
-  	</li>
-</ul>
-<!-- Background image -->
-<div
-  class="bg-image d-flex justify-content-center align-items-center"
-  style="
-    background-image: url('https://mdbcdn.b-cdn.net/img/new/fluid/nature/015.webp');
-    height: 40vh;
-  "
->
-  <h1 class="text-white" sec:authorize="!isAuthenticated()">
-  <a href="/customer/create"> 会員登録</a>
-  </h1>
-</div>
-<!-- Background image -->
 
-<div class="row mb-3">
-	<div class="col">
-		<form action="/search" class="form-inline" method="get">
-			<label class="mr-3">
-				検索ワード
-				<input type="text" name="word" th:value="${param.word}" class="form-control">
-			</label>
-			<label class="mr-3">
-				都道府県
-				<select name="prefecture" class="form-control">
-					<option></option>
-					<option 
-						th:each="prefecture : ${prefectures}" 
-						th:value="${prefecture}" 
-						th:text="${prefecture}" 
-						th:selected="${#strings.equals(param.prefecture, prefecture)}">
-					</option>
-				</select>
-			</label>
-			<input type="submit" value="絞込" class="btn btn-primary mr-1">
-		</form>
-	</div>
-</div>
+		<div class="bg-image h-100"
+			style="background-image: url(https://mdbootstrap.com/img/Photos/new-templates/search-box/img4.jpg);">
+			<div class="mask d-flex align-items-center h-100"
+				style="background-color: rgba(194, 185, 179, 0.2);">
+				<div class="container">
+					<p class="h1 mb-4 mb-md-5 text-dark text-uppercase text-center">Search
+						hotel</p>
+					<div class="card" style="background-color: rgba(0, 0, 0, .7);">
+						<div class="card-body p-4">
+							<div class="row justify-content-center">
+								<div
+									class="col-lg-12 col-xl-10 d-lg-flex flex-row mb-lg-4 mb-xl-0">
 
-<div class="row">
-	<div class="col">
-		<table class="table">
-			<thead>
-				<tr>
-					<th>会社</th>
-					<th>求人タイトル</th>
-					<th>操作</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="offer : ${offers}" th:object="${offer}">
-					<td th:text="*{company.name}"></td>
-					<td th:text="*{title}"></td>
-					<td>
-						<a th:href="@{|/offer/*{id}|}">表示</a>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-</div>
+									<div id="basic"
+										class="form-outline form-white flex-fill me-lg-2 mb-3 mb-lg-0">
+										<input type="text" id="form1" class="form-control" /> <label
+											class="form-label" for="form1">What are you looking
+											for?</label>
+									</div>
 
-</div>
+									<div
+										class="form-outline datepicker form-white flex-fill mx-lg-2 mb-3 mb-lg-0"
+										data-mdb-toggle-button="false">
+										<input type="text" class="form-control"
+											id="exampleDatepicker1" data-mdb-toggle="datepicker" /> <label
+											for="exampleDatepicker1" class="form-label">Arrival
+											date</label>
+									</div>
+
+									<div
+										class="form-outline datepicker form-white flex-fill mx-lg-2 mb-3 mb-lg-0"
+										data-mdb-toggle-button="false">
+										<input type="text" class="form-control"
+											id="exampleDatepicker2" data-mdb-toggle="datepicker" /> <label
+											for="exampleDatepicker2" class="form-label">Departure
+											date</label>
+									</div>
+
+									<div id="location"
+										class="form-outline form-white flex-fill ms-lg-2 mb-4 mb-lg-0">
+										<input type="text" id="form2" class="form-control" /> <label
+											class="form-label" for="form2">Number of guests</label>
+									</div>
+
+								</div>
+								<div class="col-lg-12 col-xl-2">
+									<input class="btn btn-primary btn-rounded btn-block"
+										type="submit" value="Search" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	</head>
+<body>
+
+	<p>Date: <input type="text" id="datepicker">
+	</p>
+ 
+ 
+</body>
+
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.js"></script>
+
 
 </body>
+
 </html>
